@@ -18,4 +18,6 @@ def teardown_request(p):
 
 @app.route('/')
 def ola():
-    return render_template("hello.html")
+    user_name = "Lou"
+    user_list = ["Lorena", "Daniel", "Danielle", "Luana"]
+    return render_template("hello.html", name=user_list)
