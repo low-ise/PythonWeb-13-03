@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alunos</title>
+    <title>Blog</title>
 <body>
-    {% for i in name %}
-    <h1>Hello 
-        {% if not name %}
-        stranger
-        {% else %}
-        {{i}}
-        {% endif %}
-    </h1>
-    {% endfor %}
+    {%for i in post%}
+    <h1>{{i.title}}</h1>
+    <p><h2>{{i.text}}</h2></p>
+    <i><h1>{{i.creation_date}}</h1></i>
+    {%endfor%}
+    
 </body>
 </html>
