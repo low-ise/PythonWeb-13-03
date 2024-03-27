@@ -1,23 +1,21 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, g
 import sqlite3
 
-app = Flask('Hello')
+app = Flask(__name__)
 
 DATABASE = "banco.bd"
 SECRET_KEY = "1234"
-app.configure.from_object(__name__)
+app.config.from_object(__name__)
+
+@app.before_request
+def before_request():
+    g.bd = sqlite3.connect(DATABASE)
+
+@app.teardown_request
+def teardown_request(p):
+    if hasattr(g, 'bd'):
+        g.bd.close()
 
 @app.route('/')
-
-def conect():
-    return sqlite3.connect(DATABASE)
-
-def before_request():
-    g.bd = connect()
-
-def teardown_request():
-    g.bd.close()
-
-
-def hello():
-    return render_template('hello.html')
+def ola():
+    return render_template("hello.html")
